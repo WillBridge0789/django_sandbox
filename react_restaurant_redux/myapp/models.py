@@ -4,15 +4,19 @@ from django.db import models
 class Food(models.Model):
     name = models.CharField(max_length=50)
     price = models.IntegerField(max_length=100)
-    spicy_level = models.IntegerField(max_length=10)
     description = models.CharField(max_length=200)
 
     def __str__(self):
-        return f'{self.name}, {self.price}, {self.spicy_level}, {self.description}'
+        return self.name
 
 class Category(models.Model):
     name = models.ForeignKey("Food", on_delete=models.SET_NULL, null=True)
 
+    def __str__(self):
+        return self.name
 
 class Cuisine(models.Model):
     name = models.ForeignKey("Food", on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.name
